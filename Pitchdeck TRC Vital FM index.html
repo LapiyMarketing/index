@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Head of Growth — Pitch | Lapiy Marketing Inc.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --lmi-primary: #0ba84a;
+    --lmi-dark: #004926;
+    --lmi-deep: #003318;
+    --ink: #111111;
+    --ink-soft: #444444;
+    --ink-mute: #6b7280;
+    --paper: #ffffff;
+    --paper-soft: #fafaf7;
+    --line: #e5e5e0;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--paper-soft);
+    color: var(--ink);
+  }
+  .serif { font-family: 'Charter', 'Georgia', serif; }
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2.5rem 4rem;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 60px;
+  }
+  .section-num {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--lmi-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  h1.deck-title { font-size: 44px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+  h2.section-title { font-size: 32px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; margin-top: 0.5rem; }
+  h3.sub { font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lmi-dark); }
+  .body { font-size: 16px; line-height: 1.65; color: var(--ink-soft); }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .card-accent { border-left: 3px solid var(--lmi-primary); }
+  .metric-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; }
+  .metric-value { font-size: 22px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .metric-value-lg { font-size: 30px; font-weight: 500; color: var(--lmi-dark); font-variant-numeric: tabular-nums; }
+  .range { font-size: 13px; color: var(--ink-mute); font-variant-numeric: tabular-nums; }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 4px; background: var(--line); border-radius: 2px; outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px; background: var(--lmi-primary); border-radius: 50%; cursor: pointer;
+    border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--lmi-primary);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px; background: var(--lmi-primary); border-radius: 50%; cursor: pointer;
+    border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--lmi-primary);
+  }
+  .slider-row { display: grid; grid-template-columns: 140px 1fr 110px; gap: 12px; align-items: center; padding: 8px 0; }
+  .slider-row label { font-size: 13px; color: var(--ink-soft); }
+  .slider-row .value { font-size: 14px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+  .funnel-stage { display: grid; grid-template-columns: 130px 1fr 130px; gap: 12px; align-items: center; padding: 10px 12px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; margin-bottom: 4px; }
+  .funnel-bar { height: 20px; background: #f0f0eb; border-radius: 3px; overflow: hidden; position: relative; }
+  .funnel-fill { height: 100%; background: var(--lmi-primary); border-radius: 3px; transition: width 0.2s; }
+  .funnel-value { font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+  .funnel-value strong { color: var(--ink); font-weight: 500; }
+  .kpi-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .pill-fast { background: #fee; color: #900; }
+  .pill-med { background: #fef3d0; color: #7a4a00; }
+  .pill-slow { background: #e0f0e0; color: #0a5a1a; }
+  .pill-scale { background: #e0eef7; color: var(--lmi-dark); }
+  .nav-fixed {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 2rem;
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav-links a { font-size: 12px; padding: 4px 8px; color: var(--ink-mute); border-radius: 4px; }
+  .nav-links a:hover { background: var(--paper-soft); color: var(--lmi-dark); }
+  .brand-mark { font-size: 13px; font-weight: 600; color: var(--lmi-dark); }
+  .brand-mark span { color: var(--lmi-primary); }
+  .quote-mark { font-family: 'Charter', serif; font-size: 15px; color: var(--ink-soft); line-height: 1.6; font-style: italic; padding-left: 1rem; border-left: 2px solid var(--lmi-primary); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.75rem; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .slider-row { grid-template-columns: 100px 1fr 90px; }
+    .funnel-stage { grid-template-columns: 90px 1fr 100px; }
+    h1.deck-title { font-size: 32px; }
+    h2.section-title { font-size: 24px; }
+    .section { padding: 3rem 1.25rem; }
+  }
+  table.compare { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.compare th { text-align: left; padding: 10px 12px; background: var(--paper-soft); border: 1px solid var(--line); font-weight: 600; color: var(--lmi-dark); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  table.compare td { padding: 10px 12px; border: 1px solid var(--line); vertical-align: top; }
+  .guardrail-row { display: grid; grid-template-columns: 100px 1fr 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .guardrail-row:last-child { border-bottom: none; }
+  .guardrail-row .trigger { font-size: 14px; color: var(--ink); }
+  .guardrail-row .action { font-size: 13px; color: var(--ink-soft); }
+  .phase-header { background: var(--lmi-dark); color: white; padding: 14px 20px; border-radius: 8px 8px 0 0; }
+  .phase-body { background: var(--paper); border: 1px solid var(--line); border-top: none; border-radius: 0 0 8px 8px; padding: 20px; }
+  .checklist li { padding: 4px 0 4px 20px; font-size: 14px; color: var(--ink-soft); position: relative; }
+  .checklist li:before { content: ""; position: absolute; left: 0; top: 12px; width: 8px; height: 8px; background: var(--lmi-primary); border-radius: 50%; }
+  .arrow-text { font-size: 11px; color: var(--ink-mute); text-align: center; padding: 2px 0; }
+  .logo-tile { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; text-align: center; transition: border-color 0.2s; }
+  .logo-tile:hover { border-color: var(--lmi-primary); }
+  .logo-tile .name { font-size: 14px; font-weight: 600; color: var(--lmi-dark); margin-bottom: 6px; }
+  .logo-tile .metric { font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
+  .callout {
+    background: linear-gradient(90deg, rgba(11,168,74,0.05), rgba(11,168,74,0));
+    border-left: 3px solid var(--lmi-primary);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .callout strong { color: var(--lmi-dark); }
+</style>
+</head>
+<body>
+
+<div class="nav-fixed">
+  <div class="nav-inner">
+    <div class="brand-mark">Lapiy Marketing<span>.</span></div>
+    <div class="nav-links">
+      <a href="#s1">1</a>
+      <a href="#s2">2</a>
+      <a href="#s3">3</a>
+      <a href="#s4">4</a>
+      <a href="#s5">5</a>
+      <a href="#s6">6</a>
+      <a href="#s7">7</a>
+      <a href="#s8">8</a>
+      <a href="#s9">9</a>
+    </div>
+  </div>
+</div>
+
+<div style="height: 40px;"></div>
+
+<!-- ============ SECTION 1: COMPANY, MARKET & BUYER ============ -->
+<section id="s1" class="section">
+  <div class="section-num">01 — Company, Market & Buyer</div>
+  <h1 class="deck-title">The two-brand problem.</h1>
+  <p class="body" style="margin-top: 1rem; max-width: 720px;">
+    The Review Course sells itself with a focus on conversion optimization into a capped market volume. Vital FM has a larger global market volume but is more dense with institutional competitors. Same team, opposite problems, one growth engine to build across both.
+  </p>
+
+  <div class="grid-2" style="margin-top: 2.5rem;">
+
+    <div class="card card-accent">
+      <h3 class="sub">The Review Course</h3>
+      <p class="body" style="margin-top: 0.75rem; font-size: 15px;">CCFP exam preparation. Fixed exam date, high customer pain, easy to sell.</p>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Addressable buyers per year</div>
+        <div class="metric-value-lg">~2,000–3,000</div>
+        <p class="range" style="margin-top: 4px;">1,746 new FM residents matched via CaRMS 2024, plus practice-eligible route and re-writers.</p>
+      </div>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Estimated current share</div>
+        <div class="metric-value-lg">~25–30%</div>
+        <p class="range" style="margin-top: 4px;">Based on 5,000 lifetime customers over 10 years.</p>
+      </div>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Buyer motivation</div>
+        <p class="body" style="font-size: 14px; margin-top: 4px;">Exam deadline. Two sessions per year — spring (April) and fall (October). Pain is acute, timeline is fixed, decision is binary.</p>
+      </div>
+    </div>
+
+    <div class="card card-accent">
+      <h3 class="sub">Vital FM Update</h3>
+      <p class="body" style="margin-top: 0.75rem; font-size: 15px;">CME for practicing family physicians and nurse practitioners. Global audience, saturated market.</p>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Canadian addressable</div>
+        <div class="metric-value-lg">~47,000</div>
+        <p class="range" style="margin-top: 4px;">CFPC membership. Global English-speaking FM/NP audience: 1M+.</p>
+      </div>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Mainpro+ credits per weekend</div>
+        <div class="metric-value-lg">13.5 certified</div>
+        <p class="range" style="margin-top: 4px;">Physicians need 125 certified over 5 years. Vital FM = 27% of the annual certified requirement in one weekend.</p>
+      </div>
+      <div style="margin-top: 1.25rem;">
+        <div class="metric-label">Buyer motivation</div>
+        <p class="body" style="font-size: 14px; margin-top: 4px;">Credit maintenance is the "why buy." Medutainment is the "why yours." Two distinct decisions, two distinct messaging jobs.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top: 2rem;">
+    <strong>Seasonality — confirmed.</strong> 24 months of Google Keyword Planner data on "ccfp exam prep" shows clear peaks Jan–April and Aug–October, troughs May–June and Nov–December. Application windows drive the intent curve. TRC ad spend must be timing-driven or it burns during the trough. Vital FM seasonality is unknown from outside and will be established from historical registration data in Phase 1.
+  </div>
+</section>
+
+<!-- ============ SECTION 2: COMPETITIVE LANDSCAPE & GAPS ============ -->
+<section id="s2" class="section">
+  <div class="section-num">02 — Competitive Landscape & Gaps</div>
+  <h2 class="section-title">The competitive frame, and what I can't see yet.</h2>
+
+  <h3 class="sub" style="margin-top: 2rem;">The Review Course — Direct Competitors</h3>
+  <table class="compare" style="margin-top: 0.75rem;">
+    <tr>
+      <th style="width: 30%;">Competitor</th>
+      <th style="width: 30%;">Model</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td><strong>Family Med Exam Prep</strong><br><span style="font-size: 12px; color: var(--ink-mute);">familymedexamprep.com</span></td>
+      <td>3-day webinar</td>
+      <td>$999.99 + HST. Closest direct comp — same product, same buyer, same price band.</td>
+    </tr>
+    <tr>
+      <td><strong>CanadaQBank</strong></td>
+      <td>Question bank subscription</td>
+      <td>SEO-heavy competitor eating high-intent search terms. Different price point, adjacent buyer.</td>
+    </tr>
+    <tr>
+      <td><strong>MeduStudy</strong></td>
+      <td>Resells TRC virtual</td>
+      <td>Existing distribution channel — worth clarifying terms and how it feeds pipeline.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub" style="margin-top: 2rem;">Vital FM Update — Competitive Set</h3>
+  <table class="compare" style="margin-top: 0.75rem;">
+    <tr>
+      <th style="width: 30%;">Competitor</th>
+      <th style="width: 30%;">Format</th>
+      <th>Positioning</th>
+    </tr>
+    <tr>
+      <td><strong>FMF</strong> (Family Medicine Forum)</td>
+      <td>4-day conference, November</td>
+      <td>The CFPC's own event. Break-even pricing, huge program, institutional trust.</td>
+    </tr>
+    <tr>
+      <td><strong>UBC CPD</strong></td>
+      <td>Multiple annual conferences</td>
+      <td>800+ participants. University credibility, referral pipelines from academic medicine.</td>
+    </tr>
+    <tr>
+      <td><strong>Pri-Med</strong> (US, AAFP-reciprocal)</td>
+      <td>Free + paid conferences</td>
+      <td>190K+ US clinicians. Ad-supported free entry model, hard to compete with on price.</td>
+    </tr>
+    <tr>
+      <td><strong>Providence / St Paul's IM Review</strong></td>
+      <td>4-day, May</td>
+      <td>Direct BC competitor. Small-group format, institutional backing.</td>
+    </tr>
+    <tr>
+      <td><strong>Regional university CPD</strong></td>
+      <td>Multiple annual</td>
+      <td>Dalhousie, McMaster, U of T. Institutional trust and captive audiences.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub" style="margin-top: 2rem;">Current Channel Presence — Audit Findings</h3>
+  <div class="grid-2" style="margin-top: 0.75rem;">
+    <div class="card">
+      <div class="metric-label">TRC Google Ads</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;"><strong style="color: var(--ink);">Active.</strong> Running on branded and generic terms. Probable branded cannibalization on "the review course" — worth a Search Terms audit day 1.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">TRC Meta Ads</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;"><strong style="color: var(--ink);">Not running</strong> (confirmed via Ad Library).</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">Vital FM Google Ads</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;"><strong style="color: var(--ink);">Unconfirmed from outside.</strong> Day 1 audit priority.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">Vital FM Meta Ads</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;"><strong style="color: var(--ink);">Not running</strong> (confirmed via Ad Library). Clean slate for prospecting build.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">TRC SEO Position</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;">381 organic keywords, Authority Score 22. Ranks <strong style="color: var(--ink);">#3 organic</strong> for "ccfp" (4,400 monthly searches). Gap: high-intent commercial exam prep terms.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">Vital FM SEO Position</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;">Thinner. Newer property, less content, less authority. Requires Phase 1 audit.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">TikTok Organic</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;"><strong style="color: var(--ink);">60,000 followers.</strong> Real distribution asset — potential Spark Ads test in Phase 2–3 if audience overlap holds.</p>
+    </div>
+    <div class="card">
+      <div class="metric-label">WhatsApp Community</div>
+      <p class="body" style="font-size: 14px; margin-top: 6px;">Exists per JD. Architecture unknown from outside — Phase 1 review to understand what's automated and what's manual.</p>
+    </div>
+  </div>
+
+  <h3 class="sub" style="margin-top: 2rem;">Honest Gaps — What I Can't Know From Outside</h3>
+  <ul class="checklist" style="margin-top: 0.75rem;">
+    <li>Current landing page conversion rate on both brands</li>
+    <li>Actual CPC and CAC per channel today</li>
+    <li>Meta Pixel installation health across Wix and LearnWorlds</li>
+    <li>Current lead-to-seat conversion mechanics</li>
+    <li>Existing Zapier and Mailchimp architecture depth</li>
+  </ul>
+
+  <div class="callout" style="margin-top: 1.5rem;">
+    This slide contains what I can defend from external audit. Every number in the next three slides is a hypothesis to validate, not a commitment. Phase 1 fills these gaps before I recommend a single change to what's currently working.
+  </div>
+</section>
+
+<!-- ============ SECTION 3: CHANNELS & FUNNEL ============ -->
+<section id="s3" class="section">
+  <div class="section-num">03 — The Channels & Funnel</div>
+  <h2 class="section-title">What $5,000 produces, per channel.</h2>
+  <p class="body" style="margin-top: 1rem; max-width: 720px;">
+    Adjust any input. Watch the funnel breathe. Every output includes a ±20% range to reflect real-world noise. These are hypotheses to validate, not commitments. If your data says my defaults are wrong, we'll know in Phase 1 and adjust the plan.
+  </p>
+
+  <!-- Model 1: TRC Google -->
+  <div class="card" style="margin-top: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+      <h3 class="sub" style="color: var(--lmi-primary);">Model 1 · TRC Google Search</h3>
+      <div style="font-size: 12px; color: var(--ink-mute);">Peak season · demand capture</div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <div class="slider-row">
+          <label>Budget</label>
+          <input type="range" id="trc-budget" min="0" max="10000" step="50" value="2000">
+          <div class="value">$<span id="trc-budget-v">2,000</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CPC</label>
+          <input type="range" id="trc-cpc" min="0" max="50" step="0.25" value="4.5">
+          <div class="value">$<span id="trc-cpc-v">4.50</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CTR</label>
+          <input type="range" id="trc-ctr" min="0" max="100" step="0.25" value="6">
+          <div class="value"><span id="trc-ctr-v">6.00</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>LP conversion</label>
+          <input type="range" id="trc-lp" min="0" max="100" step="0.25" value="5">
+          <div class="value"><span id="trc-lp-v">5.00</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Lead → seat</label>
+          <input type="range" id="trc-lts" min="0" max="100" step="0.5" value="40">
+          <div class="value"><span id="trc-lts-v">40.0</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Ticket price</label>
+          <input type="range" id="trc-ticket" min="0" max="5000" step="10" value="900">
+          <div class="value">$<span id="trc-ticket-v">900</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Impressions</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="trc-fill-1" style="width: 100%;"></div></div>
+          <div class="funnel-value"><strong id="trc-imp">7,407</strong><br><span id="trc-imp-r">5,926 – 8,889</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Clicks</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="trc-fill-2" style="width: 55%;"></div></div>
+          <div class="funnel-value"><strong id="trc-clk">444</strong><br><span id="trc-clk-r">355 – 533</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Leads</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="trc-fill-3" style="width: 14%;"></div></div>
+          <div class="funnel-value"><strong id="trc-lds">22</strong><br><span id="trc-lds-r">18 – 27</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Seats</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="trc-fill-4" style="width: 5%;"></div></div>
+          <div class="funnel-value"><strong id="trc-sts">9</strong><br><span id="trc-sts-r">7 – 11</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 1rem; background: var(--paper-soft); padding: 14px; border-radius: 8px;">
+      <div>
+        <div class="metric-label">CPL</div>
+        <div class="metric-value">$<span id="trc-cpl">90</span></div>
+        <div class="range">$<span id="trc-cpl-l">75</span> – $<span id="trc-cpl-h">113</span></div>
+      </div>
+      <div>
+        <div class="metric-label">CAC / seat</div>
+        <div class="metric-value">$<span id="trc-cac">222</span></div>
+        <div class="range">$<span id="trc-cac-l">185</span> – $<span id="trc-cac-h">278</span></div>
+      </div>
+      <div>
+        <div class="metric-label">Revenue</div>
+        <div class="metric-value">$<span id="trc-rev">8,100</span></div>
+        <div class="range">$<span id="trc-rev-l">6,480</span> – $<span id="trc-rev-h">9,720</span></div>
+      </div>
+      <div>
+        <div class="metric-label">ROAS</div>
+        <div class="metric-value"><span id="trc-roas">4.05</span>x</div>
+        <div class="range"><span id="trc-roas-l">3.24</span>x – <span id="trc-roas-h">4.86</span>x</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Model 2: Vital FM Google -->
+  <div class="card" style="margin-top: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+      <h3 class="sub" style="color: var(--lmi-primary);">Model 2 · Vital FM Google Search</h3>
+      <div style="font-size: 12px; color: var(--ink-mute);">Demand capture · thin volume</div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <div class="slider-row">
+          <label>Budget</label>
+          <input type="range" id="vg-budget" min="0" max="10000" step="50" value="1500">
+          <div class="value">$<span id="vg-budget-v">1,500</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CPC</label>
+          <input type="range" id="vg-cpc" min="0" max="50" step="0.25" value="5.5">
+          <div class="value">$<span id="vg-cpc-v">5.50</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CTR</label>
+          <input type="range" id="vg-ctr" min="0" max="100" step="0.25" value="4">
+          <div class="value"><span id="vg-ctr-v">4.00</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>LP conversion</label>
+          <input type="range" id="vg-lp" min="0" max="100" step="0.25" value="4">
+          <div class="value"><span id="vg-lp-v">4.00</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Lead → seat</label>
+          <input type="range" id="vg-lts" min="0" max="100" step="0.5" value="35">
+          <div class="value"><span id="vg-lts-v">35.0</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Ticket price</label>
+          <input type="range" id="vg-ticket" min="0" max="5000" step="10" value="795">
+          <div class="value">$<span id="vg-ticket-v">795</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Impressions</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vg-fill-1" style="width: 100%;"></div></div>
+          <div class="funnel-value"><strong id="vg-imp">6,818</strong><br><span id="vg-imp-r">5,455 – 8,182</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Clicks</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vg-fill-2" style="width: 45%;"></div></div>
+          <div class="funnel-value"><strong id="vg-clk">273</strong><br><span id="vg-clk-r">218 – 327</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Leads</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vg-fill-3" style="width: 11%;"></div></div>
+          <div class="funnel-value"><strong id="vg-lds">11</strong><br><span id="vg-lds-r">9 – 13</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Seats</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vg-fill-4" style="width: 4%;"></div></div>
+          <div class="funnel-value"><strong id="vg-sts">4</strong><br><span id="vg-sts-r">3 – 5</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 1rem; background: var(--paper-soft); padding: 14px; border-radius: 8px;">
+      <div>
+        <div class="metric-label">CPL</div>
+        <div class="metric-value">$<span id="vg-cpl">138</span></div>
+        <div class="range">$<span id="vg-cpl-l">115</span> – $<span id="vg-cpl-h">172</span></div>
+      </div>
+      <div>
+        <div class="metric-label">CAC / seat</div>
+        <div class="metric-value">$<span id="vg-cac">394</span></div>
+        <div class="range">$<span id="vg-cac-l">328</span> – $<span id="vg-cac-h">492</span></div>
+      </div>
+      <div>
+        <div class="metric-label">Revenue</div>
+        <div class="metric-value">$<span id="vg-rev">3,020</span></div>
+        <div class="range">$<span id="vg-rev-l">2,416</span> – $<span id="vg-rev-h">3,624</span></div>
+      </div>
+      <div>
+        <div class="metric-label">ROAS</div>
+        <div class="metric-value"><span id="vg-roas">2.01</span>x</div>
+        <div class="range"><span id="vg-roas-l">1.61</span>x – <span id="vg-roas-h">2.42</span>x</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Model 3: Vital FM Meta -->
+  <div class="card" style="margin-top: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;">
+      <h3 class="sub" style="color: var(--lmi-primary);">Model 3 · Vital FM Meta</h3>
+      <div style="font-size: 12px; color: var(--ink-mute);">Awareness + assist · not direct lead-gen</div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <div class="slider-row">
+          <label>Budget</label>
+          <input type="range" id="vm-budget" min="0" max="10000" step="50" value="1500">
+          <div class="value">$<span id="vm-budget-v">1,500</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CPM</label>
+          <input type="range" id="vm-cpm" min="0" max="200" step="1" value="35">
+          <div class="value">$<span id="vm-cpm-v">35</span></div>
+        </div>
+        <div class="slider-row">
+          <label>CTR</label>
+          <input type="range" id="vm-ctr" min="0" max="100" step="0.1" value="1.2">
+          <div class="value"><span id="vm-ctr-v">1.20</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>LP conversion</label>
+          <input type="range" id="vm-lp" min="0" max="100" step="0.25" value="3">
+          <div class="value"><span id="vm-lp-v">3.00</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Lead → seat</label>
+          <input type="range" id="vm-lts" min="0" max="100" step="0.5" value="20">
+          <div class="value"><span id="vm-lts-v">20.0</span>%</div>
+        </div>
+        <div class="slider-row">
+          <label>Ticket price</label>
+          <input type="range" id="vm-ticket" min="0" max="5000" step="10" value="795">
+          <div class="value">$<span id="vm-ticket-v">795</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Impressions</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vm-fill-1" style="width: 100%;"></div></div>
+          <div class="funnel-value"><strong id="vm-imp">42,857</strong><br><span id="vm-imp-r">34,286 – 51,428</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Clicks</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vm-fill-2" style="width: 40%;"></div></div>
+          <div class="funnel-value"><strong id="vm-clk">514</strong><br><span id="vm-clk-r">412 – 617</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Leads</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vm-fill-3" style="width: 12%;"></div></div>
+          <div class="funnel-value"><strong id="vm-lds">15</strong><br><span id="vm-lds-r">12 – 19</span></div>
+        </div>
+        <div class="arrow-text">↓</div>
+        <div class="funnel-stage">
+          <div style="font-size: 13px; color: var(--ink-soft);">Seats</div>
+          <div class="funnel-bar"><div class="funnel-fill" id="vm-fill-4" style="width: 4%;"></div></div>
+          <div class="funnel-value"><strong id="vm-sts">3</strong><br><span id="vm-sts-r">2 – 4</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 1rem; background: var(--paper-soft); padding: 14px; border-radius: 8px;">
+      <div>
+        <div class="metric-label">CPL</div>
+        <div class="metric-value">$<span id="vm-cpl">100</span></div>
+        <div class="range">$<span id="vm-cpl-l">83</span> – $<span id="vm-cpl-h">125</span></div>
+      </div>
+      <div>
+        <div class="metric-label">CAC / seat (direct)</div>
+        <div class="metric-value">$<span id="vm-cac">500</span></div>
+        <div class="range">$<span id="vm-cac-l">417</span> – $<span id="vm-cac-h">625</span></div>
+      </div>
+      <div>
+        <div class="metric-label">Direct Revenue</div>
+        <div class="metric-value">$<span id="vm-rev">2,385</span></div>
+        <div class="range">$<span id="vm-rev-l">1,908</span> – $<span id="vm-rev-h">2,862</span></div>
+      </div>
+      <div>
+        <div class="metric-label">Direct ROAS</div>
+        <div class="metric-value"><span id="vm-roas">1.59</span>x</div>
+        <div class="range"><span id="vm-roas-l">1.27</span>x – <span id="vm-roas-h">1.91</span>x</div>
+      </div>
+    </div>
+
+    <p class="body" style="font-size: 13px; margin-top: 12px; color: var(--ink-mute);">
+      <strong style="color: var(--ink);">Meta's real value is not in this table.</strong> Its job is to prime branded search on Google — those conversions land on Model 2's Google line, not here. Direct ROAS on Meta reads marginal by design. Blended attribution across all three channels is the honest measurement.
+    </p>
+  </div>
+</section>
+
+<!-- ============ SECTION 4: BUDGET ============ -->
+<section id="s4" class="section">
+  <div class="section-num">04 — The Budget</div>
+  <h2 class="section-title">Every allocation is a bet. Here's the one I'd defend.</h2>
+  <p class="body" style="margin-top: 1rem; max-width: 720px;">
+    Move it if you disagree. The slider redistributes the $5,000 across the three channels and updates the projected seats and blended ROAS live. Reasoning below.
+  </p>
+
+  <div class="card" style="margin-top: 2rem;">
+    <div class="grid-3" style="margin-bottom: 1.5rem;">
+      <div>
+        <div class="metric-label">TRC Google</div>
+        <div class="metric-value-lg">$<span id="alloc-trc-v">2,000</span></div>
+        <div class="range"><span id="alloc-trc-pct">40</span>% of budget</div>
+      </div>
+      <div>
+        <div class="metric-label">Vital FM Google</div>
+        <div class="metric-value-lg">$<span id="alloc-vg-v">1,500</span></div>
+        <div class="range"><span id="alloc-vg-pct">30</span>% of budget</div>
+      </div>
+      <div>
+        <div class="metric-label">Vital FM Meta</div>
+        <div class="metric-value-lg">$<span id="alloc-vm-v">1,500</span></div>
+        <div class="range"><span id="alloc-vm-pct">30</span>% of budget</div>
+      </div>
+    </div>
+
+    <div class="slider-row">
+      <label>TRC Google share</label>
+      <input type="range" id="alloc-trc" min="0" max="100" step="1" value="40">
+      <div class="value"><span id="alloc-trc-s">40</span>%</div>
+    </div>
+    <div class="slider-row">
+      <label>Vital FM Google share</label>
+      <input type="range" id="alloc-vg" min="0" max="100" step="1" value="30">
+      <div class="value"><span id="alloc-vg-s">30</span>%</div>
+    </div>
+    <div class="slider-row">
+      <label>Vital FM Meta share</label>
+      <input type="range" id="alloc-vm" min="0" max="100" step="1" value="30">
+      <div class="value"><span id="alloc-vm-s">30</span>%</div>
+    </div>
+    <p style="font-size: 12px; color: var(--ink-mute); margin-top: 8px;">Sliders auto-normalize to sum to 100%.</p>
+
+    <div style="margin-top: 1.5rem; padding: 16px; background: var(--paper-soft); border-radius: 8px;">
+      <div style="font-size: 12px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 12px;">Portfolio at this allocation</div>
+      <div class="grid-4">
+        <div>
+          <div class="metric-label">Total Seats</div>
+          <div class="metric-value">~<span id="port-seats">16</span></div>
+          <div class="range"><span id="port-seats-l">13</span> – <span id="port-seats-h">19</span></div>
+        </div>
+        <div>
+          <div class="metric-label">Total Revenue</div>
+          <div class="metric-value">$<span id="port-rev">13,505</span></div>
+          <div class="range">$<span id="port-rev-l">10,804</span> – $<span id="port-rev-h">16,206</span></div>
+        </div>
+        <div>
+          <div class="metric-label">Blended CAC</div>
+          <div class="metric-value">$<span id="port-cac">313</span></div>
+          <div class="range">$<span id="port-cac-l">263</span> – $<span id="port-cac-h">385</span></div>
+        </div>
+        <div>
+          <div class="metric-label">Blended ROAS</div>
+          <div class="metric-value"><span id="port-roas">2.70</span>x</div>
+          <div class="range"><span id="port-roas-l">2.16</span>x – <span id="port-roas-h">3.24</span>x</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top: 2rem;">
+    <div class="card">
+      <h3 class="sub">TRC — Demand Capture</h3>
+      <p class="body" style="font-size: 14px; margin-top: 8px;">Buyers already searching. Cheap to serve, easy to capture, capped by market size. Simon already owns ~25–30% share, so incremental gain is competitive — small budget efficient.</p>
+    </div>
+    <div class="card">
+      <h3 class="sub">Vital FM — Demand Generation</h3>
+      <p class="body" style="font-size: 14px; margin-top: 8px;">Buyers know they need Mainpro+ credits but haven't decided where. Requires interruption, not just presence. More expensive per seat but where the growth headroom sits.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 1rem;">
+    <strong>Important caveat.</strong> This split assumes I don't yet know TRC's current Google Ads spend. If TRC currently runs at $3,000/month with strong results, we don't cut it in Phase 1 — we audit and adjust. If it runs at $500/month with weak results, we increase. This is the recommended split given the $5K test budget as stated. Phase 1 reconciles it against reality.
+  </div>
+
+  <div class="callout" style="margin-top: 1rem;">
+    <strong>TRC Meta gets zero standalone budget in the test.</strong> TRC audience already searches on Google — demand-capture is cheaper than demand-generation for this cohort. Meta becomes a TRC lever only if Phase 1 reveals warm retargeting pools large enough to justify it, which is a month-3 decision, not a day-1 deployment.
+  </div>
+</section>
+
+<!-- ============ SECTION 5: KPIS & GUARDRAILS ============ -->
+<section id="s5" class="section">
+  <div class="section-num">05 — KPIs & Guardrails</div>
+  <h2 class="section-title">How I know it's working. And when to pull the plug.</h2>
+
+  <div class="callout" style="margin-top: 1.5rem;">
+    <strong>North star:</strong> Net Revenue Growth across the event portfolio.
+    <em style="color: var(--ink-mute); font-size: 13px; display: block; margin-top: 4px;">(your phrase, from the JD)</em>
+  </div>
+
+  <div class="grid-2" style="margin-top: 1.5rem;">
+    <div class="card">
+      <h3 class="sub">Diagnostic Order</h3>
+      <p style="font-size: 12px; color: var(--ink-mute); margin: 4px 0 12px;">How I read a broken dashboard</p>
+      <div style="font-size: 15px; color: var(--ink); font-weight: 500;">
+        CTR → LP conversion → funnel CVR → CAC → ROAS
+      </div>
+      <p class="body" style="font-size: 13px; margin-top: 10px;">Problems fire top-of-funnel first. CTR breaks in days, ROAS breaks in weeks. Walk backwards to find where.</p>
+    </div>
+    <div class="card">
+      <h3 class="sub">Importance Order</h3>
+      <p style="font-size: 12px; color: var(--ink-mute); margin: 4px 0 12px;">How success is judged</p>
+      <div style="font-size: 15px; color: var(--ink); font-weight: 500;">
+        ROAS → CAC → funnel CVR
+      </div>
+      <p class="body" style="font-size: 13px; margin-top: 10px;">ROAS earns the budget. CAC proves the unit economics. Funnel CVR is the improvement lever.</p>
+    </div>
+  </div>
+
+  <h3 class="sub" style="margin-top: 2rem;">The Five Metrics</h3>
+  <table class="compare" style="margin-top: 0.75rem;">
+    <tr>
+      <th style="width: 22%;">Metric</th>
+      <th style="width: 33%;">Target</th>
+      <th>Kill / Adjust Threshold</th>
+    </tr>
+    <tr>
+      <td><strong>1. CTR (per platform)</strong></td>
+      <td>Google Search: 5–7%<br>Meta: 1.2–2%</td>
+      <td>Google below 3% (7 days) → audit ad copy + keyword match<br>Meta below 0.8% (7 days) → refresh creative</td>
+    </tr>
+    <tr>
+      <td><strong>2. LP conversion</strong></td>
+      <td>Baseline unknown, established Phase 1</td>
+      <td>Below 3% cold traffic (14 days) → rebuild<br>Below 1.5% → immediate pause</td>
+    </tr>
+    <tr>
+      <td><strong>3. Funnel CVR (lead → seat)</strong></td>
+      <td>Vital FM Meta: 15–25%<br>Google Search: 30–40%</td>
+      <td>Below channel threshold (30 days) → nurture rebuild or qualification tightening</td>
+    </tr>
+    <tr>
+      <td><strong>4. CAC per seat</strong></td>
+      <td>TRC: $150–250 peak / $300–500 trough<br>Vital FM Google: $300–500<br>Vital FM Meta: $400–700 direct</td>
+      <td>CAC above 50% of ticket (30 days) → pause channel and reallocate</td>
+    </tr>
+    <tr>
+      <td><strong>5. Portfolio ROAS</strong></td>
+      <td>Day 90: 2.0–3.0x direct, 2.5–3.5x blended</td>
+      <td>Below 1.5x (30 days) → restructure conversation</td>
+    </tr>
+  </table>
+
+  <h3 class="sub" style="margin-top: 2rem;">Guardrails — Kill Triggers</h3>
+  <div style="margin-top: 0.75rem;">
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-fast">7 days</span></div>
+      <div class="trigger">Google CTR below 3% sustained</div>
+      <div class="action">Audit ad copy and keyword match types.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-fast">7 days</span></div>
+      <div class="trigger">Meta CTR below 0.8% sustained</div>
+      <div class="action">Refresh creative — audience burnout signal.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-fast">7 days</span></div>
+      <div class="trigger">Meta frequency above 3.5</div>
+      <div class="action">Refresh creative — fatigue signal.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-fast">Daily</span></div>
+      <div class="trigger">Pixel event volume drops 40%+ day-over-day</div>
+      <div class="action">Immediate tag audit before touching campaigns. The invisible failure mode.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-med">14 days</span></div>
+      <div class="trigger">LP conversion below 3% cold traffic</div>
+      <div class="action">Rebuild the landing page. Emergency if below 1.5% — immediate pause.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-med">14 days</span></div>
+      <div class="trigger">TRC branded CPC rising while seat volume flat</div>
+      <div class="action">Run Search Terms audit and negative-keyword sweep.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-slow">30 days</span></div>
+      <div class="trigger">Funnel CVR below channel threshold</div>
+      <div class="action">Nurture rebuild or qualification form tightening.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-slow">30 days</span></div>
+      <div class="trigger">CAC above 50% of ticket price</div>
+      <div class="action">Pause channel and reallocate budget.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-slow">30 days</span></div>
+      <div class="trigger">Portfolio ROAS below 1.5x</div>
+      <div class="action">Restructure conversation. This is the "something is fundamentally wrong" trigger.</div>
+    </div>
+  </div>
+
+  <h3 class="sub" style="margin-top: 2rem;">Guardrails — Scale Triggers</h3>
+  <div style="margin-top: 0.75rem;">
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-scale">30 days</span></div>
+      <div class="trigger">Portfolio ROAS above 3.0x direct sustained</div>
+      <div class="action">Propose +25% budget increase.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-scale">30 days</span></div>
+      <div class="trigger">Single-channel ROAS above 4x sustained</div>
+      <div class="action">Shift budget toward that channel within the mix.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-scale">30 days</span></div>
+      <div class="trigger">Vital FM lead-to-seat above 25% sustained</div>
+      <div class="action">Propose Meta budget expansion — audience can absorb more spend.</div>
+    </div>
+    <div class="guardrail-row">
+      <div><span class="kpi-pill pill-scale">Monthly</span></div>
+      <div class="trigger">CTR trending up with CAC stable</div>
+      <div class="action">Scale headroom exists — increase spend on the winning creative pool.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 1.5rem;">
+    No vague guardrails. Every threshold has a specific action. If the number moves, we know what happens next — and so do you.
+  </div>
+</section>
+
+<!-- ============ SECTION 6: 90-DAY PLAN ============ -->
+<section id="s6" class="section">
+  <div class="section-num">06 — The First 90 Days</div>
+  <h2 class="section-title">Diagnose. Build. Decide.</h2>
+  <p class="body" style="margin-top: 1rem; max-width: 720px;">
+    Nothing gets promised in Month 1 that isn't measurement. Nothing gets scaled in Month 2 that isn't validated. Nothing gets committed at Month 3 that isn't documented.
+  </p>
+
+  <!-- Phase 1 -->
+  <div style="margin-top: 2rem;">
+    <div class="phase-header">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+        <div style="font-size: 12px; letter-spacing: 0.15em; opacity: 0.8;">PHASE 1 · MONTH 1</div>
+        <div style="font-size: 12px; opacity: 0.8;">Communication: daily to every-other-day</div>
+      </div>
+      <div style="font-size: 20px; font-weight: 500; margin-top: 4px;">Diagnose and stabilize.</div>
+    </div>
+    <div class="phase-body">
+      <p class="body" style="font-style: italic; margin-bottom: 1rem;">"Nothing gets changed until we know what's actually happening. Everything working stays working. Everything measurable gets measured."</p>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="sub">Audit Work</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>Full Google Ads audit both brands — Search Terms report on TRC to resolve branded cannibalization</li>
+            <li>Meta Pixel installation audit across Wix and LearnWorlds</li>
+            <li>UTM parameter integrity check end-to-end</li>
+            <li>Baseline LP conversion measurement, both brands</li>
+            <li>Mailchimp segmentation audit</li>
+            <li>SEO audit both brands</li>
+            <li>WhatsApp community architecture review</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Team & Ops</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>Meet with designer — confirm video capability + AI creative comfort</li>
+            <li>Meet with assistant — confirm scope availability</li>
+            <li>Set up reporting layer (AgencyAnalytics)</li>
+            <li>Establish creative brief format and cadence</li>
+            <li>Deliver reconciled baseline metrics report to you</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 1.25rem;">
+        <div>
+          <h3 class="sub">Launches</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>TRC Google restructured (not rebuilt) based on findings</li>
+            <li>Vital FM Google cold Search (if not already running)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Does NOT launch</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>Vital FM Meta (waits for creative brief cycle + tracking validation)</li>
+            <li>Landing page rebuilds — measure first</li>
+            <li>Any change to what's currently working</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem; padding: 10px 14px; background: var(--paper-soft); border-radius: 6px; font-size: 13px; color: var(--ink-soft);">
+        <strong style="color: var(--ink);">End of Phase 1 expectation:</strong> revenue holds flat or improves marginally. This phase's job is not growth — it's making sure the machine is ready to grow without breaking.
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div style="margin-top: 2rem;">
+    <div class="phase-header">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+        <div style="font-size: 12px; letter-spacing: 0.15em; opacity: 0.8;">PHASE 2 · MONTH 2</div>
+        <div style="font-size: 12px; opacity: 0.8;">Communication: 2x per week</div>
+      </div>
+      <div style="font-size: 20px; font-weight: 500; margin-top: 4px;">Build the system.</div>
+    </div>
+    <div class="phase-body">
+      <p class="body" style="font-style: italic; margin-bottom: 1rem;">"With clean data flowing, we tighten the pipes and build the systems that let this run without constant intervention."</p>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="sub">Launches</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>Vital FM Meta prospecting campaign with multi-step qualification LP</li>
+            <li>Meta-fed Google retargeting via GA4 audience sync</li>
+            <li>Customer email lists uploaded as Custom Audiences (Meta + Google)</li>
+            <li>Vital FM landing page rebuild (lower downside risk than TRC)</li>
+            <li>Segmented email nurture sequences in Mailchimp</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Cadence & Discipline</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>3–5 creative angles per cycle, 2-week evaluation windows</li>
+            <li>Assistant trained on lead tagging and qualification logging</li>
+            <li>Weekly Monday dashboard live in AgencyAnalytics</li>
+            <li>TRC changes only small and incremental (measure 3x before adjusting)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem; padding: 10px 14px; background: var(--paper-soft); border-radius: 6px; font-size: 13px; color: var(--ink-soft);">
+        <strong style="color: var(--ink);">End of Phase 2 expectation:</strong> direction on unit economics (are we tracking toward CAC targets), first evidence of assist channel working, landing page CVR uplift on Vital FM rebuild.
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div style="margin-top: 2rem;">
+    <div class="phase-header">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+        <div style="font-size: 12px; letter-spacing: 0.15em; opacity: 0.8;">PHASE 3 · MONTH 3</div>
+        <div style="font-size: 12px; opacity: 0.8;">Communication: 1x per week + monthly deep dive</div>
+      </div>
+      <div style="font-size: 20px; font-weight: 500; margin-top: 4px;">Optimize and decide.</div>
+    </div>
+    <div class="phase-body">
+      <p class="body" style="font-style: italic; margin-bottom: 1rem;">"By month 3, the machine runs. My role shifts from operator to strategist. We make the scale decision based on evidence."</p>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="sub">Optimize</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>Full campaign optimization based on 60 days of data</li>
+            <li>Second landing page test if Vital FM rebuild validated</li>
+            <li>TRC → Vital FM cross-sell automation live</li>
+            <li>TikTok Spark Ads exploration if audience overlap justifies</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Decide</h3>
+          <ul class="checklist" style="margin-top: 0.5rem;">
+            <li>90-day performance report — validated CAC, blended ROAS</li>
+            <li>Scale decision framework: what does $10K, $15K, $20K/mo look like</li>
+            <li>Documented operating playbook</li>
+            <li>Q4 planning: budget request, roadmap, hire recommendation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem; padding: 10px 14px; background: var(--paper-soft); border-radius: 6px; font-size: 13px; color: var(--ink-soft);">
+        <strong style="color: var(--ink);">End of Phase 3 expectation:</strong> scale-or-iterate decision made on data, not hope. If unit economics validate, we scale. If they need another 30–60 days of iteration, I say so.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 2rem;">
+    <strong>Reporting cadence throughout:</strong> Weekly AgencyAnalytics dashboard live for you to check anytime. Monthly 30–45 minute video call for strategic review. Day 90 QBR for the scale decision. Post-90, your involvement drops to weekly async report + monthly video review + quarterly strategy meeting.
+  </div>
+</section>
+
+<!-- ============ SECTION 7: SYSTEM ARCHITECTURE ============ -->
+<section id="s7" class="section">
+  <div class="section-num">07 — System Architecture & Automation</div>
+  <h2 class="section-title">The machine, and how it stays running.</h2>
+
+  <div class="callout" style="margin-top: 1.5rem;">
+    Self-running does not mean zero human involvement. It means the machine runs on its own between defined check-ins. Data flows automatically. Alerts fire when guardrails hit. Creative and campaign work continues on a documented cadence. Your check-in frequency drops as trust in the system builds.
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <h3 class="sub">The Stack (Best Guess From Outside — Confirmed in Phase 1)</h3>
+
+    <svg width="100%" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" style="margin-top: 1rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 10px;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1 L8 5 L2 9" fill="none" stroke="#666" stroke-width="1.5"/>
+        </marker>
+        <marker id="arr-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1 L8 5 L2 9" fill="none" stroke="#0ba84a" stroke-width="1.5"/>
+        </marker>
+      </defs>
+
+      <!-- Layer labels -->
+      <text x="20" y="40" font-size="11" font-weight="600" fill="#0ba84a" letter-spacing="1.5">ACQUISITION</text>
+      <text x="20" y="180" font-size="11" font-weight="600" fill="#0ba84a" letter-spacing="1.5">CONVERSION</text>
+      <text x="20" y="300" font-size="11" font-weight="600" fill="#0ba84a" letter-spacing="1.5">LIFECYCLE</text>
+      <text x="20" y="420" font-size="11" font-weight="600" fill="#0ba84a" letter-spacing="1.5">REPORTING</text>
+
+      <!-- Acquisition Layer -->
+      <rect x="150" y="20" width="140" height="60" rx="8" fill="#e6f4ea" stroke="#0ba84a" stroke-width="1"/>
+      <text x="220" y="45" font-size="13" font-weight="600" text-anchor="middle" fill="#004926">Meta Ads</text>
+      <text x="220" y="63" font-size="11" text-anchor="middle" fill="#666">Vital FM prospecting</text>
+
+      <rect x="330" y="20" width="140" height="60" rx="8" fill="#e6f4ea" stroke="#0ba84a" stroke-width="1"/>
+      <text x="400" y="45" font-size="13" font-weight="600" text-anchor="middle" fill="#004926">Google Ads</text>
+      <text x="400" y="63" font-size="11" text-anchor="middle" fill="#666">TRC + Vital FM search</text>
+
+      <rect x="510" y="20" width="140" height="60" rx="8" fill="#fafaf7" stroke="#e5e5e0" stroke-width="1"/>
+      <text x="580" y="45" font-size="13" font-weight="600" text-anchor="middle" fill="#333">TikTok / Social</text>
+      <text x="580" y="63" font-size="11" text-anchor="middle" fill="#666">Organic + Spark Ads test</text>
+
+      <rect x="690" y="20" width="140" height="60" rx="8" fill="#fafaf7" stroke="#e5e5e0" stroke-width="1"/>
+      <text x="760" y="45" font-size="13" font-weight="600" text-anchor="middle" fill="#333">SEO</text>
+      <text x="760" y="63" font-size="11" text-anchor="middle" fill="#666">Organic search</text>
+
+      <!-- Conversion Layer -->
+      <rect x="200" y="150" width="200" height="70" rx="8" fill="#f5f9f6" stroke="#004926" stroke-width="1.5"/>
+      <text x="300" y="178" font-size="13" font-weight="600" text-anchor="middle" fill="#004926">Wix (marketing site)</text>
+      <text x="300" y="196" font-size="11" text-anchor="middle" fill="#666">Landing pages + blog</text>
+      <text x="300" y="211" font-size="10" text-anchor="middle" fill="#0ba84a">UTMs + GA4 tracking</text>
+
+      <rect x="430" y="150" width="200" height="70" rx="8" fill="#f5f9f6" stroke="#004926" stroke-width="1.5"/>
+      <text x="530" y="178" font-size="13" font-weight="600" text-anchor="middle" fill="#004926">LearnWorlds (LMS)</text>
+      <text x="530" y="196" font-size="11" text-anchor="middle" fill="#666">Checkout + product delivery</text>
+      <text x="530" y="211" font-size="10" text-anchor="middle" fill="#0ba84a">Meta Pixel + GA4 events</text>
+
+      <!-- Lifecycle Layer -->
+      <rect x="180" y="270" width="180" height="60" rx="8" fill="#fff9e6" stroke="#c98500" stroke-width="1"/>
+      <text x="270" y="295" font-size="13" font-weight="600" text-anchor="middle" fill="#7a4a00">Mailchimp</text>
+      <text x="270" y="313" font-size="11" text-anchor="middle" fill="#666">Segmented lists + nurture</text>
+
+      <rect x="390" y="270" width="180" height="60" rx="8" fill="#fff9e6" stroke="#c98500" stroke-width="1"/>
+      <text x="480" y="295" font-size="13" font-weight="600" text-anchor="middle" fill="#7a4a00">Zapier</text>
+      <text x="480" y="313" font-size="11" text-anchor="middle" fill="#666">Connective tissue</text>
+
+      <rect x="600" y="270" width="180" height="60" rx="8" fill="#fff9e6" stroke="#c98500" stroke-width="1"/>
+      <text x="690" y="295" font-size="13" font-weight="600" text-anchor="middle" fill="#7a4a00">WhatsApp Community</text>
+      <text x="690" y="313" font-size="11" text-anchor="middle" fill="#666">Post-purchase engagement</text>
+
+      <!-- Reporting Layer -->
+      <rect x="330" y="390" width="240" height="50" rx="8" fill="#0ba84a" stroke="#004926" stroke-width="1"/>
+      <text x="450" y="415" font-size="13" font-weight="600" text-anchor="middle" fill="white">AgencyAnalytics Dashboard</text>
+      <text x="450" y="431" font-size="11" text-anchor="middle" fill="#e6f4ea">One place for you to check anytime</text>
+
+      <!-- Arrows Acquisition → Conversion -->
+      <line x1="220" y1="80" x2="280" y2="150" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <line x1="400" y1="80" x2="350" y2="150" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <line x1="400" y1="80" x2="480" y2="150" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <line x1="580" y1="80" x2="530" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+      <line x1="760" y1="80" x2="580" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+
+      <!-- Wix → LearnWorlds -->
+      <line x1="400" y1="185" x2="430" y2="185" stroke="#666" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Conversion → Lifecycle -->
+      <line x1="530" y1="220" x2="480" y2="270" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <line x1="530" y1="220" x2="270" y2="270" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+      <line x1="530" y1="220" x2="690" y2="270" stroke="#0ba84a" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+      <!-- Lifecycle → Reporting -->
+      <line x1="270" y1="330" x2="410" y2="390" stroke="#666" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+      <line x1="480" y1="330" x2="470" y2="390" stroke="#666" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+      <line x1="690" y1="330" x2="510" y2="390" stroke="#666" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+
+      <!-- Direct feeds from acquisition to reporting -->
+      <path d="M 220 45 Q 100 200 340 400" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+      <path d="M 400 45 Q 850 200 560 400" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    </svg>
+  </div>
+
+  <div class="grid-2" style="margin-top: 2rem;">
+    <div class="card">
+      <h3 class="sub" style="color: var(--lmi-primary);">Automated (Data Flow)</h3>
+      <ul class="checklist" style="margin-top: 0.5rem;">
+        <li>Meta → GA4 → Google Ads audience sync</li>
+        <li>Mailchimp segment → Meta Custom Audience</li>
+        <li>Mailchimp segment → Google Customer Match (via Zapier)</li>
+        <li>AgencyAnalytics reporting (all platforms, one dashboard)</li>
+        <li>Guardrail alert notifications</li>
+        <li>Purchase event → nurture sequence trigger</li>
+        <li>TRC customer → Vital FM cross-sell sequence</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="sub" style="color: var(--lmi-dark);">Optimized (Requires Judgment)</h3>
+      <ul class="checklist" style="margin-top: 0.5rem;">
+        <li>Creative testing and iteration</li>
+        <li>Keyword and audience refinement</li>
+        <li>Landing page A/B testing</li>
+        <li>Budget reallocation between channels</li>
+        <li>Segmentation strategy evolution</li>
+        <li>New market / channel exploration decisions</li>
+      </ul>
+      <p class="body" style="font-size: 12px; margin-top: 12px; color: var(--ink-mute);">Anyone claiming full automation of creative and optimization is bullshitting. These stay manual by design.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <h3 class="sub">Monthly Tool Cost (New Additions)</h3>
+    <table class="compare" style="margin-top: 0.75rem;">
+      <tr>
+        <th style="width: 40%;">Tool</th>
+        <th style="width: 20%;">Cost</th>
+        <th>Purpose</th>
+      </tr>
+      <tr>
+        <td>Existing stack (LearnWorlds, Wix, Mailchimp, Zapier)</td>
+        <td>Unchanged</td>
+        <td>No migration. Optimize what's paid for.</td>
+      </tr>
+      <tr>
+        <td>AgencyAnalytics</td>
+        <td>~$79–149/mo</td>
+        <td>Single dashboard for you. Real time.</td>
+      </tr>
+      <tr>
+        <td>Zapier tier bump (if volume requires)</td>
+        <td>$0–100/mo</td>
+        <td>Depends on Zap task count post-buildout.</td>
+      </tr>
+      <tr>
+        <td>Total new tool spend</td>
+        <td><strong style="color: var(--lmi-dark);">$80–250/mo</strong></td>
+        <td>My default is your stack is fine. New tools only when a specific gap justifies them.</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top: 2rem;">
+    <strong style="color: var(--lmi-dark);">By day 90, your involvement is by choice, not by requirement.</strong> That is the goal of every system I build. You show up when you want strategic input, not because the machine needs manual pushing.
+  </div>
+</section>
+
+<!-- ============ SECTION 8: TEAM & TOOLS ============ -->
+<section id="s8" class="section">
+  <div class="section-num">08 — Team & Tools</div>
+  <h2 class="section-title">How I'd work with the team you have. What I'd add later.</h2>
+
+  <div class="grid-2" style="margin-top: 2rem;">
+    <div class="card">
+      <h3 class="sub">Working With Your Designer</h3>
+      <ul class="checklist" style="margin-top: 0.75rem;">
+        <li>Weekly creative brief format established Phase 1</li>
+        <li>Cadence: 3–5 creative angles per 2-week testing cycle</li>
+        <li>Open question: video production capability?</li>
+        <li>Open question: AI creative comfort (image generation, video tools, AI-assisted iteration)?</li>
+      </ul>
+      <p class="body" style="font-size: 13px; margin-top: 12px; color: var(--ink-mute);">Video capability is a real gap if it's not there — it affects Meta and PMax significantly.</p>
+    </div>
+
+    <div class="card">
+      <h3 class="sub">Working With Your Assistant</h3>
+      <ul class="checklist" style="margin-top: 0.75rem;">
+        <li>You mentioned she's interested in learning marketing</li>
+        <li>If scope allows: owns lead tagging and qualification logging</li>
+        <li>Coordinates email replies from campaign contacts</li>
+        <li>Handles designer brief coordination</li>
+      </ul>
+      <p class="body" style="font-size: 13px; margin-top: 12px; color: var(--ink-mute);">This is an ask, not an assumption. What can she realistically take on?</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 1.5rem; background: linear-gradient(90deg, rgba(11,168,74,0.03), rgba(11,168,74,0));">
+    <h3 class="sub">AI Comfort — Discussion for Tuesday</h3>
+    <p class="body" style="font-size: 14px; margin-top: 8px;">
+      Every business owner has different comfort levels with AI in production. I use AI for creative iteration, ad copy variants, and analytical work at LMI. Your team's comfort level shapes what I can produce quickly vs what needs to stay fully human-generated. Worth aligning on before Phase 1.
+    </p>
+    <ul class="checklist" style="margin-top: 8px;">
+      <li>AI-generated ad copy variants — okay to test, or human-written only?</li>
+      <li>AI image generation for social creative — comfortable, or brand risk?</li>
+      <li>AI video tools for TikTok cuts — worth exploring, or off-limits?</li>
+      <li>Analysis and reporting supported by AI — expected, or invisible?</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <h3 class="sub">The Hire Question — Day 60 Answer, Not Day 0</h3>
+    <p class="body" style="margin-top: 0.75rem;">
+      You asked what to hire outside the marketing budget. I don't have enough visibility into your operation yet to answer this responsibly. Guessing now wastes your money.
+    </p>
+    <p class="body" style="margin-top: 0.75rem;">
+      <strong>My commitment:</strong> by day 60, I'll have a clear read on where the constraints are — creative production, technical implementation, or customer response — and I'll bring a specific hire proposal with cost and justification.
+    </p>
+    <p class="body" style="margin-top: 0.75rem; font-size: 14px; color: var(--ink-mute);">
+      Categories I'd evaluate against based on Phase 1–2 findings: media buyer, video editor, copywriter, CRO specialist, attribution analyst. I wouldn't recommend more than one hire in the first 90 days.
+    </p>
+  </div>
+</section>
+
+<!-- ============ SECTION 9: RELEVANT EXPERIENCE ============ -->
+<section id="s9" class="section">
+  <div class="section-num">09 — Relevant Experience</div>
+  <h2 class="section-title">Comparable work.</h2>
+  <p class="body" style="margin-top: 1rem; max-width: 720px;">
+    Not a portfolio walk-through. One standout metric each — happy to go deeper on any of these in Q&A.
+  </p>
+
+  <div class="grid-3" style="margin-top: 2rem;">
+    <div class="logo-tile">
+      <div class="name">OP Media Group</div>
+      <div class="metric"><strong style="color: var(--ink);">691% YoY</strong> content interactions<br>3.5 year retention</div>
+    </div>
+    <div class="logo-tile">
+      <div class="name">Roka Projects</div>
+      <div class="metric"><strong style="color: var(--ink);">2x revenue</strong> year one to year two<br>Housing Special Ad Category</div>
+    </div>
+    <div class="logo-tile">
+      <div class="name">Lapiy Marketing</div>
+      <div class="metric"><strong style="color: var(--ink);">Best example</strong><br>of system and automation build</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top: 1rem;">
+    <div class="logo-tile">
+      <div class="name">Crave Catering</div>
+      <div class="metric"><strong style="color: var(--ink);">30% spend reduction</strong> while maintaining conversion volume</div>
+    </div>
+    <div class="logo-tile">
+      <div class="name">Rubberworks</div>
+      <div class="metric"><strong style="color: var(--ink);">196 blended leads</strong> across $5.6K spend<br>127 Meta + 69 Google</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 2rem; font-size: 14px; color: var(--ink-mute); text-align: center;">
+    Full case studies live at <strong style="color: var(--lmi-dark);">lapiymarketing.ca/case-studies</strong>
+  </p>
+</section>
+
+<div style="text-align: center; padding: 3rem 2rem; color: var(--ink-mute); font-size: 13px;">
+  <div style="font-family: 'Charter', serif; font-style: italic; margin-bottom: 8px;">Thank you for your time and consideration.</div>
+  Mark Lapiy · Lapiy Marketing Inc. · info@lapiymarketing.ca
+</div>
+
+<script>
+// ============ UTILITY ============
+const $ = id => document.getElementById(id);
+const fmt = (n, d=0) => n.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d});
+const fmtM = (n) => n >= 1000 ? Math.round(n).toLocaleString('en-US') : Math.round(n);
+const VARIANCE = 0.20; // ±20%
+
+// ============ MODEL 1: TRC Google ============
+function computeTRC() {
+  const budget = +$('trc-budget').value;
+  const cpc = +$('trc-cpc').value;
+  const ctr = +$('trc-ctr').value / 100;
+  const lp = +$('trc-lp').value / 100;
+  const lts = +$('trc-lts').value / 100;
+  const ticket = +$('trc-ticket').value;
+
+  $('trc-budget-v').textContent = fmt(budget);
+  $('trc-cpc-v').textContent = cpc.toFixed(2);
+  $('trc-ctr-v').textContent = (ctr*100).toFixed(2);
+  $('trc-lp-v').textContent = (lp*100).toFixed(2);
+  $('trc-lts-v').textContent = (lts*100).toFixed(1);
+  $('trc-ticket-v').textContent = fmt(ticket);
+
+  const clicks = cpc > 0 ? budget / cpc : 0;
+  const impressions = ctr > 0 ? clicks / ctr : 0;
+  const leads = clicks * lp;
+  const seats = leads * lts;
+  const cpl = leads > 0 ? budget / leads : 0;
+  const cac = seats > 0 ? budget / seats : 0;
+  const revenue = seats * ticket;
+  const roas = budget > 0 ? revenue / budget : 0;
+
+  $('trc-imp').textContent = fmt(Math.round(impressions));
+  $('trc-imp-r').textContent = fmt(Math.round(impressions*(1-VARIANCE))) + ' – ' + fmt(Math.round(impressions*(1+VARIANCE)));
+  $('trc-clk').textContent = fmt(Math.round(clicks));
+  $('trc-clk-r').textContent = fmt(Math.round(clicks*(1-VARIANCE))) + ' – ' + fmt(Math.round(clicks*(1+VARIANCE)));
+  $('trc-lds').textContent = fmt(Math.round(leads));
+  $('trc-lds-r').textContent = fmt(Math.round(leads*(1-VARIANCE))) + ' – ' + fmt(Math.round(leads*(1+VARIANCE)));
+  $('trc-sts').textContent = fmt(Math.round(seats));
+  $('trc-sts-r').textContent = fmt(Math.round(seats*(1-VARIANCE))) + ' – ' + fmt(Math.round(seats*(1+VARIANCE)));
+
+  $('trc-cpl').textContent = fmt(Math.round(cpl));
+  $('trc-cpl-l').textContent = fmt(Math.round(cpl*(1-VARIANCE)));
+  $('trc-cpl-h').textContent = fmt(Math.round(cpl*(1+VARIANCE)));
+  $('trc-cac').textContent = fmt(Math.round(cac));
+  $('trc-cac-l').textContent = fmt(Math.round(cac*(1-VARIANCE)));
+  $('trc-cac-h').textContent = fmt(Math.round(cac*(1+VARIANCE)));
+  $('trc-rev').textContent = fmt(Math.round(revenue));
+  $('trc-rev-l').textContent = fmt(Math.round(revenue*(1-VARIANCE)));
+  $('trc-rev-h').textContent = fmt(Math.round(revenue*(1+VARIANCE)));
+  $('trc-roas').textContent = roas.toFixed(2);
+  $('trc-roas-l').textContent = (roas*(1-VARIANCE)).toFixed(2);
+  $('trc-roas-h').textContent = (roas*(1+VARIANCE)).toFixed(2);
+
+  // Update bars proportionally
+  const maxV = impressions || 1;
+  $('trc-fill-2').style.width = Math.min(100, (clicks/maxV)*100) + '%';
+  $('trc-fill-3').style.width = Math.min(100, (leads/maxV)*100) + '%';
+  $('trc-fill-4').style.width = Math.min(100, (seats/maxV)*100) + '%';
+
+  return { seats, revenue, budget };
+}
+
+// ============ MODEL 2: Vital FM Google ============
+function computeVG() {
+  const budget = +$('vg-budget').value;
+  const cpc = +$('vg-cpc').value;
+  const ctr = +$('vg-ctr').value / 100;
+  const lp = +$('vg-lp').value / 100;
+  const lts = +$('vg-lts').value / 100;
+  const ticket = +$('vg-ticket').value;
+
+  $('vg-budget-v').textContent = fmt(budget);
+  $('vg-cpc-v').textContent = cpc.toFixed(2);
+  $('vg-ctr-v').textContent = (ctr*100).toFixed(2);
+  $('vg-lp-v').textContent = (lp*100).toFixed(2);
+  $('vg-lts-v').textContent = (lts*100).toFixed(1);
+  $('vg-ticket-v').textContent = fmt(ticket);
+
+  const clicks = cpc > 0 ? budget / cpc : 0;
+  const impressions = ctr > 0 ? clicks / ctr : 0;
+  const leads = clicks * lp;
+  const seats = leads * lts;
+  const cpl = leads > 0 ? budget / leads : 0;
+  const cac = seats > 0 ? budget / seats : 0;
+  const revenue = seats * ticket;
+  const roas = budget > 0 ? revenue / budget : 0;
+
+  $('vg-imp').textContent = fmt(Math.round(impressions));
+  $('vg-imp-r').textContent = fmt(Math.round(impressions*(1-VARIANCE))) + ' – ' + fmt(Math.round(impressions*(1+VARIANCE)));
+  $('vg-clk').textContent = fmt(Math.round(clicks));
+  $('vg-clk-r').textContent = fmt(Math.round(clicks*(1-VARIANCE))) + ' – ' + fmt(Math.round(clicks*(1+VARIANCE)));
+  $('vg-lds').textContent = fmt(Math.round(leads));
+  $('vg-lds-r').textContent = fmt(Math.round(leads*(1-VARIANCE))) + ' – ' + fmt(Math.round(leads*(1+VARIANCE)));
+  $('vg-sts').textContent = fmt(Math.round(seats));
+  $('vg-sts-r').textContent = fmt(Math.round(seats*(1-VARIANCE))) + ' – ' + fmt(Math.round(seats*(1+VARIANCE)));
+
+  $('vg-cpl').textContent = fmt(Math.round(cpl));
+  $('vg-cpl-l').textContent = fmt(Math.round(cpl*(1-VARIANCE)));
+  $('vg-cpl-h').textContent = fmt(Math.round(cpl*(1+VARIANCE)));
+  $('vg-cac').textContent = fmt(Math.round(cac));
+  $('vg-cac-l').textContent = fmt(Math.round(cac*(1-VARIANCE)));
+  $('vg-cac-h').textContent = fmt(Math.round(cac*(1+VARIANCE)));
+  $('vg-rev').textContent = fmt(Math.round(revenue));
+  $('vg-rev-l').textContent = fmt(Math.round(revenue*(1-VARIANCE)));
+  $('vg-rev-h').textContent = fmt(Math.round(revenue*(1+VARIANCE)));
+  $('vg-roas').textContent = roas.toFixed(2);
+  $('vg-roas-l').textContent = (roas*(1-VARIANCE)).toFixed(2);
+  $('vg-roas-h').textContent = (roas*(1+VARIANCE)).toFixed(2);
+
+  const maxV = impressions || 1;
+  $('vg-fill-2').style.width = Math.min(100, (clicks/maxV)*100) + '%';
+  $('vg-fill-3').style.width = Math.min(100, (leads/maxV)*100) + '%';
+  $('vg-fill-4').style.width = Math.min(100, (seats/maxV)*100) + '%';
+
+  return { seats, revenue, budget };
+}
+
+// ============ MODEL 3: Vital FM Meta ============
+function computeVM() {
+  const budget = +$('vm-budget').value;
+  const cpm = +$('vm-cpm').value;
+  const ctr = +$('vm-ctr').value / 100;
+  const lp = +$('vm-lp').value / 100;
+  const lts = +$('vm-lts').value / 100;
+  const ticket = +$('vm-ticket').value;
+
+  $('vm-budget-v').textContent = fmt(budget);
+  $('vm-cpm-v').textContent = fmt(cpm);
+  $('vm-ctr-v').textContent = (ctr*100).toFixed(2);
+  $('vm-lp-v').textContent = (lp*100).toFixed(2);
+  $('vm-lts-v').textContent = (lts*100).toFixed(1);
+  $('vm-ticket-v').textContent = fmt(ticket);
+
+  const impressions = cpm > 0 ? (budget / cpm) * 1000 : 0;
+  const clicks = impressions * ctr;
+  const leads = clicks * lp;
+  const seats = leads * lts;
+  const cpl = leads > 0 ? budget / leads : 0;
+  const cac = seats > 0 ? budget / seats : 0;
+  const revenue = seats * ticket;
+  const roas = budget > 0 ? revenue / budget : 0;
+
+  $('vm-imp').textContent = fmt(Math.round(impressions));
+  $('vm-imp-r').textContent = fmt(Math.round(impressions*(1-VARIANCE))) + ' – ' + fmt(Math.round(impressions*(1+VARIANCE)));
+  $('vm-clk').textContent = fmt(Math.round(clicks));
+  $('vm-clk-r').textContent = fmt(Math.round(clicks*(1-VARIANCE))) + ' – ' + fmt(Math.round(clicks*(1+VARIANCE)));
+  $('vm-lds').textContent = fmt(Math.round(leads));
+  $('vm-lds-r').textContent = fmt(Math.round(leads*(1-VARIANCE))) + ' – ' + fmt(Math.round(leads*(1+VARIANCE)));
+  $('vm-sts').textContent = fmt(Math.round(seats));
+  $('vm-sts-r').textContent = fmt(Math.round(seats*(1-VARIANCE))) + ' – ' + fmt(Math.round(seats*(1+VARIANCE)));
+
+  $('vm-cpl').textContent = fmt(Math.round(cpl));
+  $('vm-cpl-l').textContent = fmt(Math.round(cpl*(1-VARIANCE)));
+  $('vm-cpl-h').textContent = fmt(Math.round(cpl*(1+VARIANCE)));
+  $('vm-cac').textContent = fmt(Math.round(cac));
+  $('vm-cac-l').textContent = fmt(Math.round(cac*(1-VARIANCE)));
+  $('vm-cac-h').textContent = fmt(Math.round(cac*(1+VARIANCE)));
+  $('vm-rev').textContent = fmt(Math.round(revenue));
+  $('vm-rev-l').textContent = fmt(Math.round(revenue*(1-VARIANCE)));
+  $('vm-rev-h').textContent = fmt(Math.round(revenue*(1+VARIANCE)));
+  $('vm-roas').textContent = roas.toFixed(2);
+  $('vm-roas-l').textContent = (roas*(1-VARIANCE)).toFixed(2);
+  $('vm-roas-h').textContent = (roas*(1+VARIANCE)).toFixed(2);
+
+  const maxV = impressions || 1;
+  $('vm-fill-2').style.width = Math.min(100, (clicks/maxV)*100) + '%';
+  $('vm-fill-3').style.width = Math.min(100, (leads/maxV)*100) + '%';
+  $('vm-fill-4').style.width = Math.min(100, (seats/maxV)*100) + '%';
+
+  return { seats, revenue, budget };
+}
+
+// ============ ALLOCATION (Section 4) ============
+// Uses funnel math from Section 3 with proportional budget scaling
+function computeAllocation() {
+  const total = 5000;
+  let trcPct = +$('alloc-trc').value;
+  let vgPct = +$('alloc-vg').value;
+  let vmPct = +$('alloc-vm').value;
+
+  const sum = trcPct + vgPct + vmPct;
+  if (sum === 0) return;
+
+  // Normalize
+  const nTrc = (trcPct / sum) * 100;
+  const nVg = (vgPct / sum) * 100;
+  const nVm = (vmPct / sum) * 100;
+
+  const trcBudget = Math.round((nTrc / 100) * total);
+  const vgBudget = Math.round((nVg / 100) * total);
+  const vmBudget = total - trcBudget - vgBudget;
+
+  $('alloc-trc-v').textContent = fmt(trcBudget);
+  $('alloc-vg-v').textContent = fmt(vgBudget);
+  $('alloc-vm-v').textContent = fmt(vmBudget);
+  $('alloc-trc-pct').textContent = Math.round(nTrc);
+  $('alloc-vg-pct').textContent = Math.round(nVg);
+  $('alloc-vm-pct').textContent = Math.round(nVm);
+  $('alloc-trc-s').textContent = Math.round(nTrc);
+  $('alloc-vg-s').textContent = Math.round(nVg);
+  $('alloc-vm-s').textContent = Math.round(nVm);
+
+  // Use Section 3 defaults for per-channel efficiency
+  // TRC: $2000 → 9 seats, $900 ticket, revenue $8100 (from defaults)
+  // VG: $1500 → 4 seats, $795 ticket, revenue $3180
+  // VM: $1500 → 3 seats, $795 ticket, revenue $2385
+  // Scale linearly with budget
+
+  const trcSeatsPer1k = 9 / 2000;
+  const vgSeatsPer1k = 4 / 1500;
+  const vmSeatsPer1k = 3 / 1500;
+
+  const trcTicket = 900, vgTicket = 795, vmTicket = 795;
+
+  const trcSeats = trcBudget * trcSeatsPer1k;
+  const vgSeats = vgBudget * vgSeatsPer1k;
+  const vmSeats = vmBudget * vmSeatsPer1k;
+
+  const totalSeats = trcSeats + vgSeats + vmSeats;
+  const totalRevenue = trcSeats * trcTicket + vgSeats * vgTicket + vmSeats * vmTicket;
+  const blendedCAC = totalSeats > 0 ? total / totalSeats : 0;
+  const blendedROAS = total > 0 ? totalRevenue / total : 0;
+
+  $('port-seats').textContent = Math.round(totalSeats);
+  $('port-seats-l').textContent = Math.round(totalSeats*(1-VARIANCE));
+  $('port-seats-h').textContent = Math.round(totalSeats*(1+VARIANCE));
+  $('port-rev').textContent = fmt(Math.round(totalRevenue));
+  $('port-rev-l').textContent = fmt(Math.round(totalRevenue*(1-VARIANCE)));
+  $('port-rev-h').textContent = fmt(Math.round(totalRevenue*(1+VARIANCE)));
+  $('port-cac').textContent = fmt(Math.round(blendedCAC));
+  $('port-cac-l').textContent = fmt(Math.round(blendedCAC*(1-VARIANCE)));
+  $('port-cac-h').textContent = fmt(Math.round(blendedCAC*(1+VARIANCE)));
+  $('port-roas').textContent = blendedROAS.toFixed(2);
+  $('port-roas-l').textContent = (blendedROAS*(1-VARIANCE)).toFixed(2);
+  $('port-roas-h').textContent = (blendedROAS*(1+VARIANCE)).toFixed(2);
+}
+
+// ============ BIND EVENTS ============
+const trcInputs = ['trc-budget','trc-cpc','trc-ctr','trc-lp','trc-lts','trc-ticket'];
+const vgInputs = ['vg-budget','vg-cpc','vg-ctr','vg-lp','vg-lts','vg-ticket'];
+const vmInputs = ['vm-budget','vm-cpm','vm-ctr','vm-lp','vm-lts','vm-ticket'];
+const allocInputs = ['alloc-trc','alloc-vg','alloc-vm'];
+
+trcInputs.forEach(id => $(id).addEventListener('input', computeTRC));
+vgInputs.forEach(id => $(id).addEventListener('input', computeVG));
+vmInputs.forEach(id => $(id).addEventListener('input', computeVM));
+allocInputs.forEach(id => $(id).addEventListener('input', computeAllocation));
+
+// Initial compute
+computeTRC();
+computeVG();
+computeVM();
+computeAllocation();
+</script>
+
+</body>
+</html>
